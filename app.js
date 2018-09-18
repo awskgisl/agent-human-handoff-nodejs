@@ -22,7 +22,7 @@ const MessageRouter = require('./messageRouter.js');
 
 // Grab the service account credentials path from an environment variable
 //const keyPath = process.env.DF_SERVICE_ACCOUNT_PATH;
-const keyPath = 'agent-human-handoff-nodejs/agent-human-handoff-1ec01-068c1e8e8027.json';
+const keyPath = 'agent-human-handoff-1ec01-068c1e8e8027.json';
 if(!keyPath) {
   console.log('You need to specify a path to a service account keypair in environment variable DF_SERVICE_ACCOUNT_PATH. See README.md for details.');
   process.exit(1);
