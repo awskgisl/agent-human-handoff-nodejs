@@ -66,8 +66,3 @@ messageRouter.handleConnections();
 http.listen(8080, () => {
   console.log('Listening on *:8080');
 });
-
-var pathname = url.parse(request.url).pathname;
-   
-   // Print the name of the file for which request is made.
-   console.log("Request for " + pathname + " received.");
