@@ -63,6 +63,6 @@ app.get('/operator', (req, res) => {
 
 // Begin responding to websocket and http requests
 messageRouter.handleConnections();
-http.listen(443, () => {
-  console.log('Listening on *:443');
+http.listen(3000, () => {
+  console.log('Listening on *:3000');
 });
