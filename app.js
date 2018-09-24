@@ -60,7 +60,7 @@ app.get('/customer', (req, res) => {
 app.get('/operator', (req, res) => {
   res.sendFile(`${__dirname}/static/operator.html`);
 });
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 80
 // Begin responding to websocket and http requests
 messageRouter.handleConnections();
 http.listen(PORT, () => {
