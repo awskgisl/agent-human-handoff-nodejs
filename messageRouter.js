@@ -102,21 +102,6 @@ class MessageRouter {
           // Return the agent's response so it can be sent to the customer down the chain
           return speech;
         }
-
-        else if (customer.mode === CustomerStore.MODE_OPERATOR) {
-          // If the agent indicated that the customer should be switched to operator
-          // mode, do so
-          if (this._checkOperatorMode(response)) {
-            return this._sendUtteranceToAgent(utterance, customer);
-          }
-          // If not in operator mode, just grab the agent's response
-          const speech = response.queryResult.fulfillmentText;
-          // Send the agent's response to the operator so they see both sides
-          // of the conversation.
-          this._sendUtteranceToAgent(speech, customer, true);
-          // Return the agent's response so it can be sent to the customer down the chain
-          return speech;
-        }
       });
   }
 
