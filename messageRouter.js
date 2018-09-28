@@ -80,7 +80,7 @@ class MessageRouter {
     // we now send this utterance to all operators
     return this._sendUtteranceToOperator(utterance, customer)
       .then(() => {
-        console.log("I am here");
+        
         // So all of our logs end up in Dialogflow (for use in training and history),
         // we'll always send the utterance to the agent - even if the customer is in operator mode.
         return this._sendUtteranceToAgent(utterance, customer);
@@ -94,6 +94,7 @@ class MessageRouter {
           // mode, do so
           if (this._checkOperatorMode(response)) {
             return this._switchToOperator(customerId, customer, response);
+            console.log("I am kamal");
           }
           // If not in operator mode, just grab the agent's response
           const speech = response.queryResult.fulfillmentText;
