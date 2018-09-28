@@ -140,7 +140,7 @@ class MessageRouter {
   // every operator receives it.
   _sendUtteranceToOperator (utterance, customer, isAgentResponse) {
     console.log('Sending utterance to any operators');
-    if(utterance === AGENT_CONNECT)
+    if(utterance === AppConstants.AGENT_CONNECT)
     {
       this.router.customerStore
       .getOrCreateCustomer(this.socket.id)
