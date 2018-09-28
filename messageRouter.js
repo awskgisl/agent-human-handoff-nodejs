@@ -94,8 +94,7 @@ class MessageRouter {
           // mode, do so
           if (this._checkOperatorMode(response)) {
             return this._switchToOperator(customerId, customer, response);
-            console.log("I am kamal");
-          }
+           }
           // If not in operator mode, just grab the agent's response
           const speech = response.queryResult.fulfillmentText;
           // Send the agent's response to the operator so they see both sides
@@ -143,13 +142,7 @@ class MessageRouter {
     console.log('Sending utterance to any operators');
     if(utterance === AppConstants.AGENT_CONNECT)
     {
-      this.router.customerStore
-      .getOrCreateCustomer(this.socket.id)
-      .then(customer => {
-console.log('kamal');
-        // Tell the router to perform any next steps
-        return this.router._routeCustomer(utterance, customer, this.socket.id);
-      })
+      customer.mode = CustomerStore.MODE_AGENT;
     }
     if (Array.isArray(utterance)) {
       utterance.forEach(message => {
