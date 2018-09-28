@@ -64,14 +64,6 @@ class CustomerConnectionHandler extends ChatConnectionHandler {
   // Called on receipt of input from the customer
   _gotCustomerInput (utterance) {
     console.log('utterance by me:'+utterance);
-    if(utterance=='I need help')
-    {
-      console.log('I am here');
-      customer => {
-        // Tell the router to perform any next steps
-        return this.router._routeCustomer(utterance, customer, this.socket.id);
-      }
-    }
     // Look up this customer
     this.router.customerStore
       .getOrCreateCustomer(this.socket.id)
