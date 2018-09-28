@@ -64,5 +64,5 @@ const PORT = process.env.PORT || 80
 // Begin responding to websocket and http requests
 messageRouter.handleConnections();
 http.listen(PORT, () => {
-  console.log('${ PORT }');
+ console.log('PORT : '+PORT);
 });
