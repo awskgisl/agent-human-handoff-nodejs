@@ -143,6 +143,8 @@ class MessageRouter {
     if(utterance === AppConstants.AGENT_CONNECT)
     {
       customer.mode = CustomerStore.MODE_AGENT;
+    console.log('kamal');
+      
     }
     if (Array.isArray(utterance)) {
       utterance.forEach(message => {
