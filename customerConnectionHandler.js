@@ -63,7 +63,7 @@ class CustomerConnectionHandler extends ChatConnectionHandler {
 
   // Called on receipt of input from the customer
   _gotCustomerInput (utterance) {
-
+    console.log('utterance by me:'+utterance);
     if(utterance=='I need help')
     {
       customer => {
