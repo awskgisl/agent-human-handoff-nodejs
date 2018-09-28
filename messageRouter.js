@@ -145,6 +145,7 @@ class MessageRouter {
       this.router.customerStore
       .getOrCreateCustomer(this.socket.id)
       .then(customer => {
+console.log('kamal');
         // Tell the router to perform any next steps
         return this.router._routeCustomer(utterance, customer, this.socket.id);
       })
