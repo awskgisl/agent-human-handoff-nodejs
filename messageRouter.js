@@ -141,7 +141,7 @@ class MessageRouter {
     console.log('Sending utterance to any operators');
     console.log(utterance);
     if (Array.isArray(utterance)) {
-      if(utterance=='customer')
+      if(utterance='customer')
       {
 console.log('Kamal');
       }
