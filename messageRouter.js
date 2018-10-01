@@ -140,12 +140,12 @@ class MessageRouter {
   _sendUtteranceToOperator (utterance, customer, isAgentResponse) {
     console.log('Sending utterance to any operators');
     console.log(utterance);
-    if (Array.isArray(utterance)) {
-      if(utterance='customer')
+    if(utterance='customer')
       {
-console.log('Kamal');
+      console.log('Kamal');
       }
-      utterance.forEach(message => {
+    if (Array.isArray(utterance)) {
+        utterance.forEach(message => {
         this.operatorRoom.emit(AppConstants.EVENT_CUSTOMER_MESSAGE,
           this._operatorMessageObject(customer.id, message, isAgentResponse));
       });
