@@ -140,7 +140,7 @@ class MessageRouter {
   _sendUtteranceToOperator (utterance, customer, isAgentResponse) {
     console.log('Sending utterance to any operators');
     console.log(utterance);
-    if(utterance='customer')
+    if(utterance==='customer')
       {
       console.log('Kamal');
       }
