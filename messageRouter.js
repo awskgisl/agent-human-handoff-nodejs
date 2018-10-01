@@ -80,7 +80,6 @@ class MessageRouter {
     // we now send this utterance to all operators
     return this._sendUtteranceToOperator(utterance, customer)
       .then(() => {
-        
         // So all of our logs end up in Dialogflow (for use in training and history),
         // we'll always send the utterance to the agent - even if the customer is in operator mode.
         return this._sendUtteranceToAgent(utterance, customer);
@@ -94,7 +93,7 @@ class MessageRouter {
           // mode, do so
           if (this._checkOperatorMode(response)) {
             return this._switchToOperator(customerId, customer, response);
-           }
+          }
           // If not in operator mode, just grab the agent's response
           const speech = response.queryResult.fulfillmentText;
           // Send the agent's response to the operator so they see both sides
@@ -140,13 +139,11 @@ class MessageRouter {
   // every operator receives it.
   _sendUtteranceToOperator (utterance, customer, isAgentResponse) {
     console.log('Sending utterance to any operators');
-    if(utterance === AppConstants.AGENT_CONNECT)
-    {
-      customer.mode = CustomerStore.MODE_AGENT;
-    console.log('kamal');
-      
-    }
     if (Array.isArray(utterance)) {
+      if(utterance==='customer')
+      {
+console.log('Kamal');
+      }
       utterance.forEach(message => {
         this.operatorRoom.emit(AppConstants.EVENT_CUSTOMER_MESSAGE,
           this._operatorMessageObject(customer.id, message, isAgentResponse));
@@ -210,6 +207,22 @@ class MessageRouter {
         const output = [ response.queryResult.fulfillmentText, AppConstants.OPERATOR_GREETING ];
         // Also send everything to the operator so they can see how the agent responded
         this._sendUtteranceToOperator(output, customer, true);
+        return output;
+      });
+  }
+
+  _switchToCustomer (customerId, customer, response) {
+    console.log('Switching operator to customer mode');
+    customer.mode = CustomerStore.MODE_AGENT;
+    return this.customerStore
+      .setCustomer(customerId, customer)
+      .then(this._notifyOperatorOfSwitch(customerId, customer))
+      .then(() => {
+        // We return an array of two responses: the last utterance from the Dialogflow agent,
+        // and a mock "human" response introducing the operator.
+        const output = [ response.queryResult.fulfillmentText, AppConstants.OPERATOR_GREETING ];
+        // Also send everything to the operator so they can see how the agent responded
+        this._sendUtteranceToAgent(utterance, customer);
         return output;
       });
   }
