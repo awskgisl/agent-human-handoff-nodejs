@@ -139,6 +139,7 @@ class MessageRouter {
   // every operator receives it.
   _sendUtteranceToOperator (utterance, customer, isAgentResponse) {
     console.log('Sending utterance to any operators');
+    console.log(utterance);
     if (Array.isArray(utterance)) {
       if(utterance==='customer')
       {
