@@ -139,13 +139,8 @@ class MessageRouter {
   // every operator receives it.
   _sendUtteranceToOperator (utterance, customer, isAgentResponse) {
     console.log('Sending utterance to any operators');
-    console.log(utterance);
-    if(utterance==='customer')
-      {
-      console.log('Kamal');
-      }
     if (Array.isArray(utterance)) {
-        utterance.forEach(message => {
+      utterance.forEach(message => {
         this.operatorRoom.emit(AppConstants.EVENT_CUSTOMER_MESSAGE,
           this._operatorMessageObject(customer.id, message, isAgentResponse));
       });
@@ -208,22 +203,6 @@ class MessageRouter {
         const output = [ response.queryResult.fulfillmentText, AppConstants.OPERATOR_GREETING ];
         // Also send everything to the operator so they can see how the agent responded
         this._sendUtteranceToOperator(output, customer, true);
-        return output;
-      });
-  }
-
-  _switchToCustomer (customerId, customer, response) {
-    console.log('Switching operator to customer mode');
-    customer.mode = CustomerStore.MODE_AGENT;
-    return this.customerStore
-      .setCustomer(customerId, customer)
-      .then(this._notifyOperatorOfSwitch(customerId, customer))
-      .then(() => {
-        // We return an array of two responses: the last utterance from the Dialogflow agent,
-        // and a mock "human" response introducing the operator.
-        const output = [ response.queryResult.fulfillmentText, AppConstants.OPERATOR_GREETING ];
-        // Also send everything to the operator so they can see how the agent responded
-        this._sendUtteranceToAgent(utterance, customer);
         return output;
       });
   }
