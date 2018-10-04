@@ -51,7 +51,6 @@ class CustomerConnectionHandler extends ChatConnectionHandler {
   attachHandlers () {
     this.socket.on(AppConstants.EVENT_CUSTOMER_MESSAGE, (message) => {
       console.log('Received customer message: ', message);
-     
       this._gotCustomerInput(message);
     });
     this.socket.on(AppConstants.EVENT_DISCONNECT, () => {
@@ -63,7 +62,6 @@ class CustomerConnectionHandler extends ChatConnectionHandler {
 
   // Called on receipt of input from the customer
   _gotCustomerInput (utterance) {
-    console.log('utterance by me:'+utterance);
     // Look up this customer
     this.router.customerStore
       .getOrCreateCustomer(this.socket.id)
